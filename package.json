@@ -1,11 +1,13 @@
 {
   "name": "zimbabwe-sovereign-ai",
-  "version": "1.0.0",
-  "description": "Zimbabwe Sovereign Web3 + AI Architecture",
-  "main": "src/sovereign_core.py",
+  "version": "0.2.0",
+  "description": "Zimbabwe-themed cryptocurrency application prototype with off-chain PQC and bounded local simulation",
   "scripts": {
-    "test": "python -m unittest discover -s tests -p \"*_test.py\"",
-    "reality-check": "python -m unittest discover -s tests -p \"*_test.py\""
+    "test": "node --test tests/pqc-vectors.test.mjs tests/wallet-transfer.test.mjs && python -B -m unittest discover -s tests -p \"*_test.py\"",
+    "test:python": "python -B -m unittest discover -s tests -p \"*_test.py\"",
+    "reality-check": "npm test",
+    "test:wallet": "node --test tests/wallet-transfer.test.mjs",
+    "start:wallet": "node scripts/serve-wallet.mjs"
   },
   "keywords": [
     "web3",
@@ -17,5 +19,13 @@
     "conway-automaton"
   ],
   "author": "Global Sovereign Web3+AI Framework",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@noble/post-quantum": "0.7.1"
+  }
 }
