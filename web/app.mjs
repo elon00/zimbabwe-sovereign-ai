@@ -2,6 +2,7 @@ import { TokenTransfer } from './transfer.mjs';
 const byId = id => document.getElementById(id);
 let flow, observation;
 const show = value => { byId('status').textContent = typeof value === 'string' ? value : JSON.stringify(value, null, 2); };
+for (const id of ['token','recipient','amount']) byId(id).addEventListener('input',()=>{byId('reviewed').checked=false;});
 function client() {
   if (!flow) {
     flow = new TokenTransfer(window.ethereum);

@@ -45,7 +45,7 @@ export class TokenTransfer {
   }
   async switchNetwork() { this.invalidate(); await this.rpc('wallet_switchEthereumChain', [{ chainId: CHAIN }]); }
   async send({ token, recipient, amount, reviewed }) {
-    if (this.busy || this.pending) throw Error('A transfer is already in progress. Check its status first.');
+    if (this.busy || (this.pending && !this.pending.terminal)) throw Error('A transfer is already in progress. Check its status first.');
     if (reviewed !== true) throw Error('Review the testnet transfer before requesting wallet approval.');
     token = address(token); recipient = address(recipient);
     const generation = this.generation;
@@ -88,7 +88,7 @@ export class TokenTransfer {
     const receipt = await this.rpc('eth_getTransactionReceipt', [p.hash]);
     if (!receipt) return { status: 'PENDING', hash: p.hash };
     if (receipt.transactionHash?.toLowerCase() !== p.hash.toLowerCase() || receipt.to?.toLowerCase() !== p.token || receipt.from?.toLowerCase() !== p.tx.from) throw Error('Receipt does not match the requested transfer.');
-    if (receipt.status === '0x0') return { status: 'REVERTED', hash: p.hash };
+    if (receipt.status === '0x0') { p.terminal = true; return { status: 'REVERTED', hash: p.hash }; }
     if (receipt.status !== '0x1' || typeof receipt.blockHash !== 'string' || !/^0x[0-9a-f]{64}$/i.test(receipt.blockHash) || typeof receipt.blockNumber !== 'string' || !/^0x(?:0|[1-9a-f][0-9a-f]*)$/i.test(receipt.blockNumber)) throw Error('Malformed receipt.');
     const tx = await this.rpc('eth_getTransactionByHash', [p.hash]);
     if (!tx || tx.to?.toLowerCase() !== p.token || tx.from?.toLowerCase() !== p.tx.from || tx.input?.toLowerCase() !== p.tx.data || tx.value !== '0x0') throw Error('Observed transaction differs from the approved action.');
@@ -100,6 +100,7 @@ export class TokenTransfer {
     if (typeof head !== 'string' || !/^0x(?:0|[1-9a-f][0-9a-f]*)$/i.test(head) || BigInt(head) < BigInt(receipt.blockNumber)) throw Error('Invalid current block.');
     const confirmations = BigInt(head) - BigInt(receipt.blockNumber) + 1n;
     if (await this.rpc('eth_chainId') !== CHAIN) throw Error('Network changed during verification.');
+    if (confirmations >= 12n) p.terminal = true;
     return { status: confirmations >= 12n ? 'CONFIRMED_NOT_FINALIZED' : 'CONFIRMING', hash: p.hash, confirmations: confirmations.toString(), blockHash: receipt.blockHash, chainId: CHAIN, token: p.token, recipient: p.recipient, amountBaseUnits: p.value, finalized: false, sourceMatch: 'NOT_ESTABLISHED' };
   }
 }
