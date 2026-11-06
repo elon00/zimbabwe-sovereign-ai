@@ -1,0 +1,13 @@
+{
+    "network":  "Ethereum Sepolia Testnet",
+    "chainId":  11155111,
+    "chainHex":  "0xaa36a7",
+    "deployer":  "0xbbaaD9B836f9bd61cD0d616a016Cc911A2E1f60D",
+    "tokenName":  "Zimbabwe Sovereign AI Token",
+    "tokenSymbol":  "ZSAI",
+    "decimals":  18,
+    "initialSupplyBaseUnits":  "100000000000000000000000000",
+    "zimbabweSovereignToken":  "0xb35a70c4d1037589ebb550d950cff182f50e148e",
+    "deploymentTxHash":  "0xa6c89f7d1786d388d7e8a3681042b5d13efc3d9fb43363edf4bb5469a12571f5",
+    "explorerUrl":  "https://sepolia.etherscan.io/address/0xB35A70C4d1037589ebb550D950CfF182f50E148E"
+}
