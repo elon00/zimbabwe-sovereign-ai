@@ -1,4 +1,4 @@
-// Sepolia-only ERC-20 transfer. No private keys, approvals, custom RPC URLs or mainnet path.
+﻿// Sepolia-only ERC-20 transfer. No private keys, approvals, custom RPC URLs or mainnet path.
 export const CHAIN = '0xaa36a7';
 const TRANSFER_EVENT = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';
 const UINT_MAX = (1n << 256n) - 1n;
@@ -101,6 +101,8 @@ export class TokenTransfer {
     const confirmations = BigInt(head) - BigInt(receipt.blockNumber) + 1n;
     if (await this.rpc('eth_chainId') !== CHAIN) throw Error('Network changed during verification.');
     if (confirmations >= 12n) p.terminal = true;
+    if (confirmations >= 12n) p.terminal = true;
     return { status: confirmations >= 12n ? 'CONFIRMED_NOT_FINALIZED' : 'CONFIRMING', hash: p.hash, confirmations: confirmations.toString(), blockHash: receipt.blockHash, chainId: CHAIN, token: p.token, recipient: p.recipient, amountBaseUnits: p.value, finalized: false, sourceMatch: 'NOT_ESTABLISHED' };
   }
 }
+

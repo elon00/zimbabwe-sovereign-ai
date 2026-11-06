@@ -1,4 +1,4 @@
-name: Zimbabwe prototype verification
+﻿name: Zimbabwe prototype verification
 on:
   push:
     branches: [main]
@@ -62,3 +62,4 @@ jobs:
           persist-credentials: false
       - run: python .technical-guard/tools/security_guard.py install
       - run: python .technical-guard/tools/security_guard.py scan --repo . --report .qmoosa/secret-scan.json
+
