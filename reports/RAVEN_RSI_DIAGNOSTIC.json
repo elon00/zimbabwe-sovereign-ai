@@ -1,6 +1,6 @@
 {
-  "engine": "Raven_RSI",
-  "timestamp": 1794250738,
-  "status": "OBSERVED",
-  "mainnet_gate": "LOCKED"
+  "status": "CONVERGED",
+  "cycle_id": "0xe97e758e98cc375d",
+  "mainnet_gate": "LOCKED",
+  "timestamp": 1794271345
 }

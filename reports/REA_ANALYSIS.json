@@ -1,5 +1,5 @@
 {
-  "engine": "REA_Inspector",
-  "timestamp": 1794250738,
-  "total_files": 35
+  "status": "PASS",
+  "sources": 8,
+  "digest": "0x9620acbb9d0e12cd"
 }
