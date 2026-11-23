@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 QMOOSA Global Engineering Standard - State-Integrity & Reality Verification Harness
 Standard: NIST FIPS 203 (ML-KEM) / FIPS 204 (ML-DSA) Protocol Gate

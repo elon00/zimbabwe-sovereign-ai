@@ -1,0 +1,10 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Global allowlist for public testnet contract addresses and test vectors"
+paths = [
+    '''deployments/.*''',
+    '''tests/vectors/.*''',
+    '''\.env\.example'''
+]
