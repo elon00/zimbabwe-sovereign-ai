@@ -55,6 +55,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        if: ${{ hashFiles('package.json') != '' }}
+        with:
+          node-version: "22"
+      - name: Install Node Dependencies
+        if: ${{ hashFiles('package.json') != '' }}
+        run: npm ci --ignore-scripts
       - uses: actions/setup-python@v5
         if: ${{ hashFiles('requirements.txt', 'pyproject.toml') != '' }}
         with:
@@ -67,15 +74,9 @@ jobs:
           if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
           ruff check .
           pytest -q
-      - uses: actions/setup-node@v4
-        if: ${{ hashFiles('package.json') != '' }}
-        with:
-          node-version: "20"
       - name: Node / Web3 Tests
         if: ${{ hashFiles('package.json') != '' }}
-        run: |
-          npm ci
-          npm test
+        run: npm test
       - uses: dtolnay/rust-toolchain@stable
         if: ${{ hashFiles('Cargo.toml', 'program/Cargo.toml') != '' }}
       - name: Rust / Solana Tests
