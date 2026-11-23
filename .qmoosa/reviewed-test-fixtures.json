@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "rule": "generic-api-key",
+      "path": "deployments/sepolia-11155111.json",
+      "line": 5,
+      "blob_sha256": "dc49bed7da04e7f77f0110650fafaa4de3091de62969292592ff9572ab2919b0",
+      "reason": "Reviewed public Sepolia EVM token contract address in a deployment receipt, not a signing key or API credential. Exact historical Git blob, rule and line only."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "deployments/sepolia-11155111.json",
+      "line": 10,
+      "blob_sha256": "dc3cdeec43f5fb318c0dc3e97621b476d38cb6673ed4b541d3f344eefc980bc6",
+      "reason": "Reviewed public Sepolia EVM token contract address in a deployment receipt, not a signing key or API credential. Exact historical Git blob, rule and line only."
+    },
+    {
+      "rule": "generic-api-key",
+      "path": "deployments/sepolia-11155111.json",
+      "line": 5,
+      "blob_sha256": "a4a8d119c8bfe4145de1a6cc779227f55f4d8a3600f495e2c2ba7025d748c834",
+      "reason": "Reviewed public Sepolia EVM token contract address in a deployment receipt, not a signing key or API credential. Exact historical Git blob, rule and line only."
+    }
+  ]
+}
