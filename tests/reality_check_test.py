@@ -3,9 +3,10 @@ import hmac
 import subprocess
 import unittest
 from unittest.mock import patch
-from src.sovereign_core import SovereignNode
-from src.pqc_layer import SovereignPqcEngine
+
 from src.conway_consensus import ConwayConsensusGrid
+from src.pqc_layer import SovereignPqcEngine
+from src.sovereign_core import SovereignNode
 from src.x402_telemetry import X402SovereignGateway
 
 
@@ -142,8 +143,8 @@ class RealPqcTests(unittest.TestCase):
 
     def test_backend_errors_do_not_expose_request_or_secret_text(self):
         failure=subprocess.CompletedProcess([],1,stdout="",stderr="secret-canary-not-a-real-key")
-        with patch("src.pqc_layer.subprocess.run",return_value=failure):
-            with self.assertRaises(RuntimeError) as result:self.alice._call("keygen")
+        with patch("src.pqc_layer.subprocess.run", return_value=failure), self.assertRaises(RuntimeError) as result:
+            self.alice._call("keygen")
         self.assertNotIn("secret-canary",str(result.exception))
 
 

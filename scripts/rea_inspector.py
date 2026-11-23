@@ -1,4 +1,8 @@
-import ast, hashlib, json, pathlib, sys
+import hashlib
+import json
+import pathlib
+import sys
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 def inspect():
     # Only scan actual source files, strictly ignore build/out directories

@@ -4,10 +4,10 @@ Prototype memory-only keys. This is not a FIPS-validated module, a secure key
 vault, authenticated peer identity, blockchain signing or on-chain PQC.
 """
 import json
-from pathlib import Path
 import re
 import shutil
 import subprocess
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -34,7 +34,7 @@ class SovereignPqcEngine:
             raise ValueError("PQC request exceeds its size limit")
         try:
             result = subprocess.run([executable, str(ROOT / "src/pqc_backend.mjs")], input=request,
-                capture_output=True, text=True, encoding="utf-8", timeout=20, cwd=ROOT)
+                capture_output=True, text=True, encoding="utf-8", timeout=20, cwd=ROOT, check=False)
             if result.returncode or len(result.stdout) > 131072:
                 raise RuntimeError("PQC backend unavailable or rejected the request; install locked dependencies with npm ci")
             return json.loads(result.stdout)

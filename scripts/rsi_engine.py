@@ -1,4 +1,9 @@
-import hashlib, json, pathlib, sys, time
+import hashlib
+import json
+import pathlib
+import sys
+import time
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 def run_cycle():
     rea_file = ROOT / "reports" / "REA_ANALYSIS.json"

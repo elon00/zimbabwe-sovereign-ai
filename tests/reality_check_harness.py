@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 QMOOSA Global Engineering Standard - State-Integrity & Reality Verification Harness
 Standard: NIST FIPS 203 (ML-KEM) / FIPS 204 (ML-DSA) Protocol Gate
 """
-import hashlib, pathlib, sys
+import hashlib
+import pathlib
+import sys
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 def test_reality():
