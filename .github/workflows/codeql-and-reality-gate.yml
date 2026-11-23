@@ -62,7 +62,7 @@ jobs:
       - name: Install Node Dependencies
         if: ${{ hashFiles('package.json') != '' }}
         run: npm ci --ignore-scripts
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         if: ${{ hashFiles('requirements.txt', 'pyproject.toml') != '' }}
         with:
           python-version: "3.11"
