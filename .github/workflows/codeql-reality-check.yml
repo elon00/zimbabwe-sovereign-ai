@@ -1,4 +1,4 @@
-name: Zimbabwe prototype verification
+﻿name: Zimbabwe prototype verification
 on:
   push:
     branches: [main]
