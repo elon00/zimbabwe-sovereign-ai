@@ -71,7 +71,7 @@ jobs:
       - name: Install PQC backend
         if: needs.detect.outputs.node == 'true'
         run: npm ci --ignore-scripts
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - name: Install dependencies & linters
@@ -105,7 +105,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@v5
         if: needs.detect.outputs.python == 'true'
         with:
           python-version: "3.11"
